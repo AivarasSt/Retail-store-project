@@ -27,7 +27,7 @@ const CollectionService = new (class CollectionService {
     const token = CollectionService.validateToken();
 
     const { title, description, images } = collectionData;
-    console.log(title, images);
+    console.log(title, description, images);
 
     const formData = new FormData();
     formData.append('title', title);

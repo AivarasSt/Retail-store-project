@@ -45,6 +45,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const Products: React.FC = () => {
+  const [reload, setReload] = useState<boolean>(false);
   const [fetchedProducts, setFetchedProducts] = useState<Watch[]>([]);
 
   const fetchProducts = async () => {
@@ -58,12 +59,13 @@ const Products: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const handleProductDelete = async (id: string) => {
-    const deletedProduct = await ProductService.deleteProduct(id);
-    if (typeof deletedProduct === 'string') {
-      return;
-    }
+  useEffect(() => {
     fetchProducts();
+  }, [reload]);
+
+  const handleProductDelete = async (id: string) => {
+    await ProductService.deleteProduct(id);
+    setReload(!reload);
   };
 
   return (

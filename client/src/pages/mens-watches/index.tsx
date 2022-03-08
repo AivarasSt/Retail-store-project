@@ -14,17 +14,6 @@ import StyledMoreButton from '../../components/buttons/styled-more-button';
 const MensWatchesPage: React.FC = () => {
   const theme = useTheme();
   const winWidth = getWindowWidth();
-  const [fetchedProducts, setFetchedProducts] = useState<Watch[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const product = await ProductService.getMenProducts();
-      if (product) {
-        setFetchedProducts(product);
-      }
-    })();
-  }, []);
-
   let initialWatchesCount = 0;
 
   if (winWidth < theme.breakpoints.values.md) {
@@ -35,8 +24,24 @@ const MensWatchesPage: React.FC = () => {
     initialWatchesCount = 8;
   }
 
+  const [fetchedProducts, setFetchedProducts] = useState<Watch[]>([]);
   const [watchesToLoad, setWatchesToLoad] = useState<number>(initialWatchesCount);
-  const [moreToLoad, setMoreToLoad] = useState<boolean>(true);
+  const [moreToLoad, setMoreToLoad] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const product = await ProductService.getMenProducts();
+      if (product) {
+        setFetchedProducts(product);
+        if (product.length <= watchesToLoad) {
+          setMoreToLoad(true);
+        }
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   const handleClick = () => {
     setWatchesToLoad(watchesToLoad + initialWatchesCount);
@@ -44,7 +49,7 @@ const MensWatchesPage: React.FC = () => {
 
   useEffect(() => {
     if (fetchedProducts.length <= watchesToLoad) {
-      setMoreToLoad(false);
+      setMoreToLoad(true);
     }
   }, [watchesToLoad]);
 
@@ -61,49 +66,53 @@ const MensWatchesPage: React.FC = () => {
       }}
     >
       <ShopHeader title="Men's Watches" sx={{ width: { xs: '80vw', md: '60vw' } }} />
-      <Grid
-        container
-        sx={{
-          width: { xs: '70vw', md: '60vw' },
-          minHeight: '40vh',
-          display: 'flex',
-          alignItems: 'center',
-          alignContent: 'center',
-          pt: 3,
-          pb: { xs: 5, md: 10 },
-        }}
-      >
-        {fetchedProducts.slice(0, watchesToLoad).map(({ ...props }) => (
-          <Grid
-            item
-            xs={6}
-            md={4}
-            lg={3}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            key={props.title}
-          >
-            <WatchCard {...props} />
-          </Grid>
-        ))}
-      </Grid>
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <StyledMoreButton
-          onClick={handleClick}
-          disabled={!moreToLoad}
-        />
-      </Box>
-
+      {loading ? null
+        : (
+          <>
+            <Grid
+              container
+              sx={{
+                width: { xs: '70vw', md: '60vw' },
+                minHeight: '40vh',
+                display: 'flex',
+                alignItems: 'center',
+                alignContent: 'center',
+                pt: 3,
+                pb: { xs: 5, md: 10 },
+              }}
+            >
+              {fetchedProducts.map(({ ...props }) => (
+                <Grid
+                  item
+                  xs={6}
+                  md={4}
+                  lg={3}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  key={props.title}
+                >
+                  <WatchCard {...props} />
+                </Grid>
+              ))}
+            </Grid>
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <StyledMoreButton
+                onClick={handleClick}
+                disabled={moreToLoad}
+              />
+            </Box>
+          </>
+        )}
     </Box>
   );
 };

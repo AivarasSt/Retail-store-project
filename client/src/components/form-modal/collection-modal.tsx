@@ -109,7 +109,7 @@ const CollectionModal: React.FC<CollectionModalProps> = ({ handleModalClick }) =
   };
 
   useEffect(() => {
-    if (!isSubmitting) return;
+    if (isSubmitting) return;
     resetForm();
   }, [isSubmitting]);
 

@@ -34,29 +34,33 @@ const StyledBoxRight = styled(Box)(({ theme }) => ({
   },
 }));
 
+const StyledLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.secondary.main,
+}));
+
 const Socials: React.FC = () => (
   <>
     <StyledBoxLeft>
-      <Link href="https://www.facebook.com/">
+      <StyledLink href="https://www.facebook.com/" target="_blank">
         <FacebookIcon fontSize="inherit" />
-      </Link>
-      <Link href="https://www.instagram.com/">
+      </StyledLink>
+      <StyledLink href="https://www.instagram.com/" target="_blank">
         <InstagramIcon fontSize="inherit" />
-      </Link>
-      <Link href="https://twitter.com/">
+      </StyledLink>
+      <StyledLink href="https://twitter.com/" target="_blank">
         <TwitterIcon fontSize="inherit" />
-      </Link>
+      </StyledLink>
     </StyledBoxLeft>
     <StyledBoxRight>
-      <Link href="https://www.facebook.com/">
+      <StyledLink href="https://www.facebook.com/" target="_blank">
         <FacebookIcon fontSize="inherit" />
-      </Link>
-      <Link href="https://www.instagram.com/">
+      </StyledLink>
+      <StyledLink href="https://www.instagram.com/" target="_blank">
         <InstagramIcon fontSize="inherit" />
-      </Link>
-      <Link href="https://twitter.com/">
+      </StyledLink>
+      <StyledLink href="https://twitter.com/" target="_blank">
         <TwitterIcon fontSize="inherit" />
-      </Link>
+      </StyledLink>
     </StyledBoxRight>
   </>
 );

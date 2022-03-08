@@ -78,25 +78,18 @@ const deleteProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { title } = req.body;
+  const props = req.body;
+  console.log(req.body);
   try {
-    await ProductModel.findById(id)
-    .populate('brand')
-    .populate('collectionName');
-    try {
       const productDocs = await ProductModel.findByIdAndUpdate(
         id,
-        { title },
+        props,
         { new: true }
       );
       const product = new ProductViewModel(productDocs);
       res.status(200).json(product);
-    } catch (error) {
-      res.status(400).json({ message: 'Invalid parameters' });
-    }
-
   } catch (error) {
-    res.status(404).json({ message: 'This product does not exist' });
+      res.status(400).json({ message: 'Invalid parameters' });
   }
 };
 

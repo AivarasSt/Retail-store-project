@@ -32,13 +32,15 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledMoreButton: React.FC<StyledMoreButtonProps> = ({ onClick, disabled }) => (
-  <StyledButton
-    onClick={onClick}
-    disabled={disabled}
-  >
-    MORE +
-  </StyledButton>
-);
-
+const StyledMoreButton: React.FC<StyledMoreButtonProps> = ({ onClick, disabled }) => {
+  console.log(disabled);
+  return (
+    <StyledButton
+      onClick={onClick}
+      disabled={disabled}
+    >
+      MORE +
+    </StyledButton>
+  );
+};
 export default StyledMoreButton;
