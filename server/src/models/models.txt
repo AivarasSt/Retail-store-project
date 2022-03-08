@@ -1,0 +1,73 @@
+
+brand
+collection
+user
+product
+order
+
+
+product: {
+    id: '1',
+    brandId: '1',
+    title: 'Laikrodis1',
+    descriptionShort: 'Lorem ipsum dolor sit amet',
+    collectionId: '1',
+    images: [
+      'https://objects.chopard.com/media/catalog/product/cache/67333a7458446167f436bc25cd163aee/2/9/298609-3001_01_d4400_v01.png',
+      'https://objects.chopard.com/media/catalog/product/cache/67333a7458446167f436bc25cd163aee/2/9/298609-3001_4_1.jpg',
+      'https://objects.chopard.com/media/catalog/product/cache/08f196dc3181ba0f61b57e438c6770e1/2/9/298601-3001_5.jpg',
+      'https://objects.chopard.com/media/catalog/product/cache/67333a7458446167f436bc25cd163aee/2/9/298609-3001_6_1.jpg',
+    ],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    specification: [
+      {
+        title: 'METAL:',
+        info: 'stainless steel',
+      },
+      {
+        title: 'CASE DIMENSION(S):',
+        info: '44.00 mm',
+      },
+      {
+        title: 'CASE THICKNESS:',
+        info: '13.15 mm',
+      },
+      {
+        title: 'DIAL:',
+        info: 'in an Aletsch blue color obtained through a galvanic treatment - finish design inspired by the eagle\'s iris - rhodium-plated Roman numerals and indexes coated with Super-LumiNova',
+      },
+    ],
+    movement: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    price: 99999,
+}
+
+collection: {
+  id: '1',
+  title: 'Alpine Eagle',
+  image: 'https://objects.chopard.com/media//Product_Page/AlpineEagle/AE_Block_01_v01.jpg',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+}
+
+brand: {
+  id: '1',
+  title: 'Chopard',
+  image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Logo_Chopard.svg/2560px-Logo_Chopard.svg.png',
+}
+
+order: {
+  name:
+  surname:
+  address: {
+    street:
+    city:
+    postalCode:
+    country:
+  }
+  phoneNumber:
+  cart:
+    [
+      product: {
+        
+      }
+    ]
+}
