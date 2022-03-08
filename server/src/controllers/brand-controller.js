@@ -9,11 +9,9 @@ const getBrands = async (req, res) => {
 const createBrand = async (req, res) => {
   try {
   const { title } = req.body;
-  console.log("YRA", req.files);
   const images = req.files.map(({ filename }) => ({
     src: filename
   }));
-  console.log(images);
   const brandDoc = await BrandModel.create({
     title,
     images
@@ -21,7 +19,6 @@ const createBrand = async (req, res) => {
     const brand = await new BrandViewModel(brandDoc);
     res.status(200).json(brand);
   } catch ({ message }) {
-    console.log(message)
     res.status(400).json(message);
   }
 

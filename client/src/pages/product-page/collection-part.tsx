@@ -40,7 +40,6 @@ const StyledImgBox = styled(Box)(({ theme }) => ({
 const ProductPageCollectionPart: React.FC<ProductPageCollectionPartProps> = ({ watch }) => {
   // eslint-disable-next-line no-underscore-dangle
   const id = watch?.collectionName.id;
-  console.log('fuck', watch);
   const [loading, setLoading] = useState<boolean>(true);
   const [fetchedCollection, setFetchedCollection] = useState<Collection | undefined>();
 

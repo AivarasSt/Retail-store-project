@@ -13,16 +13,12 @@ const getOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const { name, surname, phoneNumber, city, country } = req.body;
-    console.log("body:", req.body);
     const orderDoc = await OrderModel.create({
       name, surname, phoneNumber, city, country
     });
     const order = await new OrderViewModel(orderDoc);
-    console.log("order:", order);
-
     res.status(200).json(order);
   } catch ({ message }) {
-    console.log(message)
     res.status(400).json({ message });
   }
 };

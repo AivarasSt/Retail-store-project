@@ -89,7 +89,6 @@ const ProductService = new (class ProductService {
 
   public deleteProduct = async (id: string): Promise<Watch | string> => {
     const token = ProductService.validateToken();
-    console.log('Deleting...');
     if (!token) return 'You are not authorized';
     try {
       const { data } = await this.requester.delete<Watch>(`/products/${id}`, {

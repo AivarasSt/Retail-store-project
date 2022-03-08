@@ -12,21 +12,16 @@ const getProducts = async (_, res) => {
 const createProduct = async (req, res) => {
   try {
     const { brand, title, descriptionShort, collectionName, description, specification, movement,   price, sex} = req.body;
-    console.log("body:", req.body);
     const images = req.files.map(({ filename }) => ({
       src: filename
     }));
-    console.log(images);
     const productDoc = await ProductModel.create({
       brand, title, descriptionShort, collectionName, description, specification, movement, price,  sex, images
     });
     const product = await new ProductViewModel(productDoc);
-    console.log("produktas:", product);
-
     res.status(200).json(product);
-  } catch ({ message }) {
-    console.log(message)
-    res.status(400).json({ message });
+  } catch (error) {
+    res.status(400).json(error);
   }
 };
 
@@ -36,7 +31,6 @@ const getProduct = async (req, res) => {
     const productDocs = await ProductModel.findById(id)
     .populate('brand')
     .populate('collectionName');
-    console.log(productDocs)
     const product = new ProductViewModel(productDocs);
     res.status(200).json(product);
   } catch (error) {
@@ -69,7 +63,6 @@ const deleteProduct = async (req, res) => {
     const product = new ProductViewModel(productDocs);
     res.status(200).json(product);
   } catch (error) {
-    console.log("ID:", id)
     res.status(404).json({
       message: `Element with id: '${id}' was not found`
     })
@@ -79,7 +72,6 @@ const deleteProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   const { id } = req.params;
   const props = req.body;
-  console.log(req.body);
   try {
       const productDocs = await ProductModel.findByIdAndUpdate(
         id,

@@ -86,7 +86,6 @@ const SignInPage = () => {
       user: fetchedUser,
       redirectTo,
     });
-    console.log(fetchedUser);
     dispatch(loginSuccessAction);
   };
 

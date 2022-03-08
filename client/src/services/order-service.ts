@@ -57,7 +57,6 @@ const OrderService = new (class OrderService {
 
   public deleteOrder = async (id: string): Promise<Order | string> => {
     const token = OrderService.validateToken();
-    console.log('Deleting...');
     if (!token) return 'You are not authorized';
     try {
       const { data } = await this.requester.delete<Order>(`/orders/${id}`, {

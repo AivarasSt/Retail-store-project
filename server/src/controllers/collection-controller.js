@@ -10,22 +10,17 @@ const getCollections = async (req, res) => {
 const createCollection = async (req, res) => {
   try {
   const { title, description } = req.body;
-  console.log("YRA", req.files);
   const images = req.files.map(({ filename }) => ({
     src: filename
   }));
-  console.log(images);
   const collectionDoc = await CollectionModel.create({
     title,
     description,
     images
   });
-  console.log("vienas:", collectionDoc);
     const collection = await new CollectionViewModel(collectionDoc);
-    console.log("du:", collection);
     res.status(200).json(collection);
   } catch ({ message }) {
-    console.log(message)
     res.status(400).json({ message });
   }
 
@@ -36,7 +31,6 @@ const getCollection = async (req, res) => {
   try {
     const collectionDoc = await CollectionModel.findById(id);
     const collection = new CollectionViewModel(collectionDoc);
-    console.log(collection);
     res.status(200).json(collection);
   } catch (error) {
     res.status(404).json({

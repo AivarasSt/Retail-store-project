@@ -20,7 +20,6 @@ const WomensWatchesPage: React.FC = () => {
     (async () => {
       const products = await ProductService.getWomenProducts();
       if (products) {
-        console.log(products);
         setFetchedProducts(products);
       }
     })();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   BoxProps,
@@ -51,28 +51,21 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 }));
 
 const AdminMobileNavigation: React.FC<AdminMobileNavigationProps> = ({ breakpoint }) => {
-  const anchor = 'top';
-  const [state, setState] = React.useState({
-    [anchor]: false,
-  });
+  const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (key: string, open: boolean) => (event: KeyboardEvent | MouseEvent) => {
-    if (event.type === 'keydown' && ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [key]: open });
+  const handleClick = () => {
+    setOpen(!open);
   };
 
   return (
     <Grid item xs={12} sx={{ flexDirection: 'column', display: { xs: 'flex', [breakpoint]: 'none' } }}>
       <Box>
-        <StyledButton onClick={() => toggleDrawer(anchor, true)}>MENU</StyledButton>
+        <StyledButton onClick={handleClick}>MENU</StyledButton>
         <StyledDrawer
           id="menu-appbar"
-          anchor={anchor}
-          open={state[anchor]}
-          onClose={toggleDrawer(anchor, false)}
+          anchor="top"
+          open={open}
+          onClose={handleClick}
         >
           <Box sx={{
             display: 'flex',
@@ -81,13 +74,13 @@ const AdminMobileNavigation: React.FC<AdminMobileNavigationProps> = ({ breakpoin
             height: '100%',
           }}
           >
-            <StyledNavLink onClick={() => toggleDrawer(anchor, true)} to="/admin/dashboard">
+            <StyledNavLink onClick={handleClick} to="/admin/dashboard">
               Orders
             </StyledNavLink>
-            <StyledNavLink onClick={() => toggleDrawer(anchor, true)} to="/admin/products">
+            <StyledNavLink onClick={handleClick} to="/admin/products">
               Products
             </StyledNavLink>
-            <StyledNavLink onClick={() => toggleDrawer(anchor, true)} to="/shop">
+            <StyledNavLink onClick={handleClick} to="/shop">
               Shop
             </StyledNavLink>
           </Box>
@@ -98,7 +91,7 @@ const AdminMobileNavigation: React.FC<AdminMobileNavigationProps> = ({ breakpoin
               justifyContent: 'center',
               color: theme.palette.secondary.main,
             })}
-            onClick={() => toggleDrawer(anchor, true)}
+            onClick={handleClick}
           >
             Close
           </Button>

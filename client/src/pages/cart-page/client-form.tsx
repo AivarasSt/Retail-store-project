@@ -81,7 +81,6 @@ const ClientForm: React.FC<ClientFormProps> = ({ handleNext }) => {
 
   const onSubmit: FormikSubmit = (formData: OrderData) => {
     handleNext();
-    console.log('aaaa', handleNext);
     handleCreateOrder(formData);
   };
 

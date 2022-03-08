@@ -39,8 +39,6 @@ const BrandService = new (class BrandService {
       },
     });
 
-    console.log('va turek:', data);
-
     return data;
   };
 

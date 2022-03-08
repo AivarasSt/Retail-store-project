@@ -16,7 +16,6 @@ const ProductPage: React.FC = () => {
     (async () => {
       const product = await ProductService.getProduct(id);
       if (product) {
-        console.log(product);
         setFetchedProduct(product);
         setLoading(false);
       }

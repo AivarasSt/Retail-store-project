@@ -50,7 +50,6 @@ const login = async (req, res) => {
     }
 
   } catch (error) {
-    console.log(error);
     res.status(404).json({ message: 'Email is not found' });
   }
 };

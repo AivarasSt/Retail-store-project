@@ -17,7 +17,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-console.log(upload);
 
 const uploadManyMiddleware = (name) => upload.array(name);
 const uploadSingleMiddleware = (name) => upload.single(name);
