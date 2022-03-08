@@ -69,7 +69,7 @@ const CardContentComponent: React.FC<CardContentComponentProps> = ({
           className="child"
         >
           <Typography>{title}</Typography>
-          {descriptionShort && <Typography>{descriptionShort}</Typography>}
+          {descriptionShort && <Typography sx={{ textAlign: 'center' }}>{descriptionShort}</Typography>}
           <StyledButton variant="outlined">
             Discover
           </StyledButton>
