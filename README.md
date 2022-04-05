@@ -4,7 +4,7 @@ Thin White Line
 
 ## Description
 
-Luxury watch retail store project
+Luxury watch retail store project [work-in-progress].
 
 ## Getting Started
 
@@ -43,12 +43,12 @@ Luxury watch retail store project
   ```
   $ npm start
   ```
+### Access Admin panel
+
+* On your server, create user with a role 'ADMIN'. You can find the user model schema by navigating to server > src > models > user-model.js
+* To open the login form add '/admin' to your home page url. 
+* Admin panel can be accessed after successful login.
 
 ## Authors
 
  * Aivaras Stanaitis
-
-
-## Honorable mentions
-
-* Justas Peldžius
